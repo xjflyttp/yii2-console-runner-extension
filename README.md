@@ -11,7 +11,14 @@ Add the following to `require` section of your `composer.json`:
 ```
 "vova07/yii2-console-runner-extension": "*"
 ```
-
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "git://github.com/xjflyttp/yii2-console-runner-extension.git"
+    }
+],
+```
 Then do `composer install`.
 
 Usage
