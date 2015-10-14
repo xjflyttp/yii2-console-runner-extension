@@ -12,7 +12,7 @@ use yii\base\InvalidConfigException;
  * Usage:
  * ```
  * ...
- * $cr = new ConsoleRunner(['file' => '@my/path/to/yii']);
+ * $cr = new ConsoleRunner(['file' => '@my/path/to/yii', 'php' => 'c:/abc/php.exe']);
  * $cr->run('controller/action param1 param2 ...');
  * ...
  * ```
@@ -24,6 +24,7 @@ use yii\base\InvalidConfigException;
  *     'consoleRunner' => [
  *         'class' => 'vova07\console\ConsoleRunner',
  *         'file' => '@my/path/to/yii' // or an absolute path to console file
+ *         'php' => 'c:/abc/php.exe'
  *     ]
  * ]
  * ...
@@ -40,6 +41,8 @@ class ConsoleRunner extends Component
      */
     public $file;
 
+    public $php;
+
     /**
      * @inheritdoc
      */
@@ -49,6 +52,10 @@ class ConsoleRunner extends Component
 
         if ($this->file === null) {
             throw new InvalidConfigException('The "file" property must be set.');
+        }
+
+        if ($this->php === null) {
+            $this->php = PHP_BINDIR . '/php';
         }
     }
 
@@ -60,7 +67,7 @@ class ConsoleRunner extends Component
      */
     public function run($cmd)
     {
-        $cmd = PHP_BINDIR . '/php ' . Yii::getAlias($this->file) . ' ' . $cmd;
+        $cmd = $this->php . ' ' . Yii::getAlias($this->file) . ' ' . $cmd;
         if ($this->isWindows() === true) {
             pclose(popen('start /b ' . $cmd, 'r'));
         } else {
