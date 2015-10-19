@@ -28,7 +28,7 @@ Imported class:
 
 ```php
 use vova07\console\ConsoleRunner;
-$cr = new ConsoleRunner(['file' => '@my/path/to/yii']);
+$cr = new ConsoleRunner(['file' => '@my/path/to/yii', 'php' => 'c:/xxx/php.exe']);
 $cr->run('controller/action param1 param2 ...');
 ```
 
@@ -40,7 +40,8 @@ Application component:
 components [
     'consoleRunner' => [
         'class' => 'vova07\console\ConsoleRunner',
-        'file' => '@my/path/to/yii' // or an absolute path to console file
+        'file' => '@my/path/to/yii', // or an absolute path to console file
+        'php' => 'c:/xxx/php.exe',
     ]
 ]
 ...
