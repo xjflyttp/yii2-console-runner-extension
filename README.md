@@ -9,7 +9,7 @@ Installation
 Add the following to `require` section of your `composer.json`:
 
 ```
-"vova07/yii2-console-runner-extension": "*"
+"vova07/yii2-console-runner-extension": "dev-master",
 ```
 ```
 "repositories": [
